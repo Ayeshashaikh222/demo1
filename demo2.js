@@ -50,6 +50,8 @@ var thirditem = document.querySelector('li:nth-child(3)');
 thirditem.style.display = 'none';
 
 
+
+
 // QUERYSELECTORALL
 // var odd = document.querySelectorAll('.list-group-item');
 // odd[1].style.fontSize = '20px';
