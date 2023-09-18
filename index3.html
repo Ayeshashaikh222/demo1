@@ -14,56 +14,75 @@
                 <div class="col-lg-1 col-sm-1 col-m-1"></div>
                 <form onsubmit="myfunc(event)">
 
-                    <div class="form-group">
-                        <label for="fullname"> Full Name:</label>
-                        <input type="text" id="fullname" name="username" class="form-control" value="">
-                    </div><br>
-                    <div class="form-group">
-                        <label for="useremail">Email:</label>
-                        <input type="email" id="useremail" name="useremail" class="form-control">
-                    </div><br>
-                    <div class="form-group">
-                        <label for="mobileNumber">Phone:</label>
-                        <input type="text" id="mobileNumber" name="phoneNumber" class="form-control">
-                    </div><br>
+
+                    <label for="fullname"> Full Name:</label>
+                    <input type="text" id="fullname" name="username" class="form-control" value="">
+
+
+                    <label for="useremail">Email:</label>
+                    <input type="email" id="useremail" name="useremail" class="form-control">
+
+
+                    <label for="mobileNumber">Phone:</label>
+                    <input type="text" id="mobileNumber" name="phoneNumber" class="form-control">
+
                     <input type="submit" id="button" value="Submit">
                 </form>
                 <ul id="listOfItems"></ul>
-                    <script>
-                        function myfunc(event) {
-                            event.preventDefault();
-                            const name = event.target.username.value;
-                            const email = event.target.useremail.value;
-                            const mobileNumber = event.target.phoneNumber.value;
+                <script>
+                    function myfunc(event) {
+                        event.preventDefault();
+                        const name = event.target.username.value;
+                        const email = event.target.useremail.value;
+                        const mobileNumber = event.target.phoneNumber.value;
 
-                            const obj = {
-                                name,
-                                email,
-                                mobileNumber
+                        const obj = {
+                            name,
+                            email,
+                            mobileNumber
+                        }
+
+                        localStorage.setItem(obj.email, JSON.stringify(obj))
+                        showUserOnScreen(obj)
+
+                        function showUserOnScreen(obj) {
+                            const parentItem = document.getElementById('listOfItems');
+                            const childItem = document.createElement('li');
+                            
+                            childItem.textContent = obj.name + " - " + obj.email + " - " + obj.mobileNumber;
+                            // parentItem.innerHTML =  parentItem.innerHTML + `<li>${obj.name} - ${obj.email} - ${obj.mobileNumber}</li>`;
+
+
+                            const btn = document.createElement('input');
+                            btn.type = 'button';
+                            btn.value = 'delete';
+                            btn.onclick = () => {
+                                parentItem.removeChild(childItem);
+                                localStorage.removeItem(obj.email);
                             }
+                            parentItem.appendChild(btn);
 
-                            localStorage.setItem(obj.email, JSON.stringify(obj))
-                            showUserOnScreen(obj)
 
-                            function showUserOnScreen(obj){
-                                const parentItem = document.getElementById('listOfItems');
-                                const childItem = document.createElement('li');
-                                childItem.textContent = obj.name + " - " + obj.email + " - " + obj.mobileNumber;
-                                parentItem.appendChild(childItem);
-                            }
-
+                            // parentItem.appendChild(childItem);
 
 
                             
+                            
+                            
+                    }
 
 
 
-                           
 
 
 
-                        }
-                    </script>
+
+
+
+
+
+                    }
+                </script>
 </body>
 
 </html>

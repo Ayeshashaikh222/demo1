@@ -55,6 +55,7 @@
 
                             parentItem.appendChild(childItem);
 
+                            // added delete button
                             const btn = document.createElement('input');
                             btn.type = 'button';
                             btn.value = 'delete';
@@ -63,37 +64,25 @@
                                 localStorage.removeItem(obj.email);
                             }
                             parentItem.appendChild(btn);
-
+                            
+                            // added edit button
                             const edit = document.createElement('input');
                             edit.type = 'button';
                             edit.value = 'Edit';
-                            edit.onclick = (e) => {
+                            edit.onclick = () => {
                                 localStorage.removeItem(obj.email);
                                 parentItem.removeChild(childItem);
-                                let name1 = name.value
-                                let email1 = email.value
-                                let phoneNumber1 = phoneNumber.value
+                            
+                                document.getElementById('fullname').value = obj.name
+                                document.getElementById('useremail').value = obj.email
+                                document.getElementById('mobileNumber').value = obj.mobileNumber
+                               
 
 
                             }
                             parentItem.appendChild(edit);
-                            
-
-
-                            
-                            
-                            
+                                   
                     }
-
-
-
-
-
-
-
-
-
-
 
                     }
                 </script>
