@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include Bootstrap CSS and JavaScript -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .main-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid orange;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .main-container h2,
+        .main-container p {
+            text-align: center;
+        }
+
+        h2 {
+            color: orange;
+        }
+
+        .main-container p {
+            margin-bottom: 20px;
+        }
+
+        .main-container hr {
+            margin-bottom: 20px;
+        }
+
+        /* #fullname,
+        #useremail,
+        #mobileNumber,
+        #bookingDate,
+        #bookingTime {
+            width: 100%;
+            margin-bottom: 10px;
+        } */
+
+        #fullname,
+        #useremail,
+        #mobileNumber
+        {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        #bookingDate,
+        #bookingTime {
+            width: 49%;
+
+        }
+
+        label {
+            margin-left: 0;
+        }
+
+        #button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1 col-sm-1 col-m-1"></div>
+                <form onsubmit="myfunc(event)">
+                    <h2>Booking appointment </h2>
+                    <p>Book a call slot, and our representative will call you within 1 hour of the selected time.</p>
+                    <hr>
+                    <div class="form-group">
+                        <label for="fullname"> Full Name:</label>
+                        <input type="text" id="fullname" class="form-control" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="useremail">Email:</label>
+                        <input type="email" id="useremail" name="useremail" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobileNumber">Phone:</label>
+                        <input type="text" id="mobileNumber" name="mobileNumber" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingDate" class="form-label">Time for call:</label><br>
+                        <input type="date" id="bookingDate" name="bookingDate" class="form-control" style="display: inline-block;" >
+                        <select name="bookingDate" id="bookingTime" class="form-select"  style="display: inline-block;" >
+                            <option value="9:00">9:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                        </select>
+                        
+                    </div>
+                    <input type="submit" id="button" value="GET A CALL">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function myfunc(event){
+    event.preventDefault();
+    let fullName = document.getElementById('fullname').value;
+    let email = document.getElementById('useremail').value;
+    let mobileNumber = document.getElementById('mobileNumber').value;
+    let bookingDate = document.getElementById('bookingDate').value;
+    let bookingTime = document.getElementById('bookingTime').value;
+
+    // localStorage.setItem('full_Name', fullName);
+    // localStorage.setItem('email', email);
+    // localStorage.setItem('mobile_number', mobileNumber);
+    // localStorage.setItem('booking_date', bookingDate);
+    // localStorage.setItem('booking_time', bookingTime);
+
+    let userDetails = {
+        name : fullName,
+        email : email,
+        mobile_number : mobileNumber,
+        booking_Date : bookingDate,
+        booking_time : bookingTime
+
+
+    };
+    
+    let userdetails_serialized = JSON.stringify(userDetails);
+
+     localStorage.setItem('userDetails', userdetails_serialized);
+
+     let userdetails_deserialized = JSON.parse(localStorage.getItem('userDetails'));
+     console.log(userdetails_deserialized);
+      
+
+
+}
+    </script>
+</body>
+
+</html>
+
